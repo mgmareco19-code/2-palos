@@ -237,11 +237,11 @@
     </div>
 
     <div class="gallery__grid" id="gallery-track">
-      <figure class="gallery__item gallery__item--1 reveal reveal--zoom"><img src="https://placehold.co/700x800/16213A/F2A93B?text=Toro+Mec%C3%A1nico" alt="Invitados disfrutando del toro mecánico en un evento" loading="lazy"></figure>
-      <figure class="gallery__item gallery__item--2 reveal reveal--zoom"><img src="https://placehold.co/700x500/12877F/FBF8F2?text=Juegos+de+Mesa" alt="Mesa con juegos de mesa durante un evento" loading="lazy"></figure>
-      <figure class="gallery__item gallery__item--3 reveal reveal--zoom"><img src="https://placehold.co/700x350/D6336C/FBF8F2?text=Globo+Loco" alt="Globo loco inflado en una fiesta infantil" loading="lazy"></figure>
-      <figure class="gallery__item gallery__item--4 reveal reveal--zoom"><img src="https://placehold.co/500x600/F2A93B/1E2A3A?text=Puffs" alt="Puffs de cuerina en el área de descanso de un evento" loading="lazy"></figure>
-      <figure class="gallery__item gallery__item--5 reveal reveal--zoom"><img src="https://placehold.co/900x600/1E2A3A/F2A93B?text=Toldos+y+Tarimas" alt="Toldos y tarimas instalados para un evento empresarial" loading="lazy"></figure>
+      <figure class="gallery__item gallery__item--1 reveal reveal--zoom"><button type="button" class="gallery__zoom"><img src="https://placehold.co/700x800/16213A/F2A93B?text=Toro+Mec%C3%A1nico" alt="Invitados disfrutando del toro mecánico en un evento" loading="lazy"></button></figure>
+      <figure class="gallery__item gallery__item--2 reveal reveal--zoom"><button type="button" class="gallery__zoom"><img src="https://placehold.co/700x500/12877F/FBF8F2?text=Juegos+de+Mesa" alt="Mesa con juegos de mesa durante un evento" loading="lazy"></button></figure>
+      <figure class="gallery__item gallery__item--3 reveal reveal--zoom"><button type="button" class="gallery__zoom"><img src="https://placehold.co/700x350/D6336C/FBF8F2?text=Globo+Loco" alt="Globo loco inflado en una fiesta infantil" loading="lazy"></button></figure>
+      <figure class="gallery__item gallery__item--4 reveal reveal--zoom"><button type="button" class="gallery__zoom"><img src="https://placehold.co/500x600/F2A93B/1E2A3A?text=Puffs" alt="Puffs de cuerina en el área de descanso de un evento" loading="lazy"></button></figure>
+      <figure class="gallery__item gallery__item--5 reveal reveal--zoom"><button type="button" class="gallery__zoom"><img src="https://placehold.co/900x600/1E2A3A/F2A93B?text=Toldos+y+Tarimas" alt="Toldos y tarimas instalados para un evento empresarial" loading="lazy"></button></figure>
     </div>
   </section>
 
@@ -405,9 +405,22 @@
     <div class="site-footer__col">
       <h3>Contacto</h3>
       <ul>
-        <li><a href="https://wa.me/595993303099" target="_blank" rel="noopener">WhatsApp: +595 993 303 099</a></li>
-        <li><a href="https://instagram.com/2palospy" target="_blank" rel="noopener" class="footer-instagram">
-          <img src="img/v982-d3-04.jpg" alt="Logo DOS PALOS - síguenos en Instagram @2palospy" width="36" height="36">
+        <li><a href="https://wa.me/595993303099" target="_blank" rel="noopener" class="footer-social">
+          <span class="footer-social__icon footer-social__icon--wsp" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C4 14.7 3.6 13.4 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2z"/></svg>
+          </span>
+          WhatsApp: +595 993 303 099
+        </a></li>
+        <li><a href="https://instagram.com/2palospy" target="_blank" rel="noopener" class="footer-social footer-social--instagram">
+          <span class="footer-social__icon footer-social__icon--ig" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4a4.9 4.9 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.16-.46-.35-1.26-.4-2.43C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43a4.9 4.9 0 0 1 1.15-1.77A4.9 4.9 0 0 1 5.59 1.8c.46-.16 1.26-.35 2.43-.4C9.29 1.34 9.67 1.33 12 1.33Zm0 1.98c-3.16 0-3.51.01-4.75.07-.96.04-1.48.2-1.83.34-.46.18-.79.39-1.13.73-.34.34-.55.67-.73 1.13-.14.35-.3.87-.34 1.83-.06 1.24-.07 1.59-.07 4.75s.01 3.51.07 4.75c.04.96.2 1.48.34 1.83.18.46.39.79.73 1.13.34.34.67.55 1.13.73.35.14.87.3 1.83.34 1.24.06 1.59.07 4.75.07s3.51-.01 4.75-.07c.96-.04 1.48-.2 1.83-.34.46-.18.79-.39 1.13-.73.34-.34.55-.67.73-1.13.14-.35.3-.87.34-1.83.06-1.24.07-1.59.07-4.75s-.01-3.51-.07-4.75c-.04-.96-.2-1.48-.34-1.83a3 3 0 0 0-.73-1.13 3 3 0 0 0-1.13-.73c-.35-.14-.87-.3-1.83-.34-1.24-.06-1.59-.07-4.75-.07Zm0 3.4a5.42 5.42 0 1 1 0 10.84 5.42 5.42 0 0 1 0-10.84Zm0 1.98a3.44 3.44 0 1 0 0 6.88 3.44 3.44 0 0 0 0-6.88Zm5.64-1.7a1.27 1.27 0 1 1-2.53 0 1.27 1.27 0 0 1 2.53 0Z"/></svg>
+          </span>
+          @2palospy
+        </a></li>
+        <li><a href="https://tiktok.com/@2palospy" target="_blank" rel="noopener" class="footer-social footer-social--tiktok">
+          <span class="footer-social__icon footer-social__icon--tiktok" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M16.7 2h-3.4v13.9c0 1.5-1.2 2.7-2.7 2.7a2.7 2.7 0 0 1-2.7-2.7 2.7 2.7 0 0 1 2.7-2.7c.3 0 .6.05.9.13v-3.5c-.3-.04-.6-.06-.9-.06-3.4 0-6.1 2.75-6.1 6.13S7.9 22 11.3 22s6.1-2.75 6.1-6.13V8.8a8.3 8.3 0 0 0 4.6 1.4V6.8a4.9 4.9 0 0 1-3.4-1.4A4.9 4.9 0 0 1 17.2 2h-.5Z"/></svg>
+          </span>
           @2palospy
         </a></li>
       </ul>
@@ -417,6 +430,14 @@
     <p>© <span id="year"></span> DOS PALOS. Todos los derechos reservados.</p>
   </div>
 </footer>
+
+<!-- ===== LIGHTBOX GALERÍA ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button type="button" class="lightbox__close" id="lightboxClose" aria-label="Cerrar imagen">&times;</button>
+  <figure class="lightbox__figure">
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+  </figure>
+</div>
 
 <!-- ===== WHATSAPP FLOTANTE ===== -->
 <a href="https://wa.me/595993303099?text=Hola%20DOS%20PALOS%2C%20quiero%20consultar%20sobre%20sus%20servicios"
