@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTouchParallax();
   initFaqAccordion();
   initFooterYear();
+  initGalleryLightbox();
 });
 
 /* ---------- Menú móvil ---------- */
@@ -135,6 +136,48 @@ function initFaqAccordion() {
       btn.setAttribute('aria-expanded', String(!isOpen));
       answer.style.maxHeight = isOpen ? null : `${answer.scrollHeight}px`;
     });
+  });
+}
+
+/* ---------- Lightbox de la galería ---------- */
+function initGalleryLightbox() {
+  const triggers = document.querySelectorAll('.gallery__zoom');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const closeBtn = document.getElementById('lightboxClose');
+  if (!triggers.length || !lightbox || !lightboxImg || !closeBtn) return;
+
+  function openLightbox(img) {
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt || '';
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+
+  triggers.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const img = btn.querySelector('img');
+      if (img) openLightbox(img);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
   });
 }
 
