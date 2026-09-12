@@ -296,7 +296,19 @@ section{ padding-block:clamp(3.5rem, 7vw, 6rem); border-top:1px solid var(--line
   .services__grid{ grid-template-columns:repeat(2, 1fr); }
 }
 @media (max-width:600px){
-  .services__grid{ grid-template-columns:1fr; }
+  .services__grid{ grid-template-columns:repeat(3, 1fr); gap:0.5rem; }
+  .service-card{ border-radius:var(--radius-sm); }
+  .service-card__media{ aspect-ratio:1/1; }
+  .service-card__body{ padding:0.55rem 0.5rem 0.65rem; gap:0.2rem; }
+  .service-card__body h3{ font-size:0.72rem; line-height:1.25; }
+  .service-card__body p{ display:none; }
+  .service-card__cta{ font-size:0.7rem; margin-top:0.2rem; }
+}
+@media (max-width:360px){
+  .services__grid{ gap:0.4rem; }
+  .service-card__body{ padding:0.45rem 0.4rem 0.55rem; }
+  .service-card__body h3{ font-size:0.66rem; }
+  .service-card__cta{ font-size:0.62rem; }
 }
 
 /* =========================================================
