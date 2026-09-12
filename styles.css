@@ -200,7 +200,7 @@ button{ font:inherit; background:none; border:none; cursor:pointer; color:inheri
   color:var(--ink); text-align:center;
 }
 .hero__scrim{
-  background:linear-gradient(180deg, rgba(10,10,11,0.18) 0%, rgba(10,10,11,0.32) 55%, var(--bg) 100%);
+  background:linear-gradient(180deg, rgba(10,10,11,0.42) 0%, rgba(10,10,11,0.6) 55%, var(--bg) 100%);
 }
 .hero__confetti{ position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
 .confetti{
