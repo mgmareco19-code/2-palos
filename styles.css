@@ -1,0 +1,474 @@
+/* =========================================================
+   DOS PALOS — landing page
+   Estilo editorial oscuro inspirado en Vanta Supply:
+   fondo casi negro continuo, tipografía grande, secciones
+   numeradas (§0X), tarjetas con borde fino, acento de color
+   usado con moderación.
+========================================================= */
+:root{
+  /* color base — oscuro continuo */
+  --bg:#0A0A0B;
+  --bg-raised:#141417;
+  --bg-raised-2:#1C1C21;
+  --line:rgba(243,241,234,0.10);
+  --line-strong:rgba(243,241,234,0.22);
+
+  --ink:#F3F1EA;
+  --ink-soft:rgba(243,241,234,0.66);
+  --ink-faint:rgba(243,241,234,0.42);
+
+  /* acentos — usados con moderación, no como fondo */
+  --gold:#F2A93B;
+  --pink:#D6336C;
+  --pink-dark:#B02457;
+  --teal:#2FB8AE;
+  --whatsapp:#25D366;
+  --whatsapp-dark:#1DA851;
+
+  --white:#FFFFFF;
+  --night:#0A0A0B; /* alias usado por el header/occasions existentes */
+
+  /* type */
+  --font-display:'Baloo 2', system-ui, sans-serif;
+  --font-body:'Work Sans', system-ui, sans-serif;
+
+  /* layout */
+  --container-w:1180px;
+  --radius-sm:10px;
+  --radius-md:18px;
+  --radius-lg:32px;
+  --gap:clamp(1rem, 2vw, 1.75rem);
+
+  --shadow-soft: 0 12px 30px -14px rgba(0,0,0,0.55);
+  --shadow-lift: 0 24px 48px -18px rgba(0,0,0,0.7);
+}
+
+/* =========================================================
+   Reset
+========================================================= */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+section[id], main [id]{ scroll-margin-top:84px; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--ink-soft);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.55;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul,ol{ margin:0; padding:0; list-style:none; }
+h1,h2,h3{ font-family:var(--font-display); margin:0 0 0.5em; line-height:1.12; color:var(--ink); font-weight:700; }
+p{ margin:0 0 1em; color:var(--ink-soft); }
+button{ font:inherit; background:none; border:none; cursor:pointer; color:inherit; }
+
+.container{
+  width:100%;
+  max-width:var(--container-w);
+  margin-inline:auto;
+  padding-inline:clamp(1.25rem, 4vw, 2rem);
+}
+
+.skip-link{
+  position:absolute; left:-999px; top:0; background:var(--gold); color:var(--bg);
+  padding:0.75rem 1.25rem; z-index:999; border-radius:0 0 var(--radius-sm) 0; font-weight:700;
+}
+.skip-link:focus{ left:0; }
+
+:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+/* =========================================================
+   Eyebrow — etiquetas de sección numeradas
+========================================================= */
+.eyebrow{
+  display:inline-block;
+  font-family:var(--font-body); font-weight:700; font-size:0.78rem;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:1rem;
+}
+.eyebrow--light{ color:rgba(255,255,255,0.85); }
+
+/* =========================================================
+   Buttons
+========================================================= */
+.btn{
+  display:inline-flex; align-items:center; gap:0.55em;
+  font-family:var(--font-display); font-weight:600;
+  padding:0.85em 1.5em; border-radius:999px;
+  transition:transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+  white-space:nowrap;
+}
+.btn--lg{ padding:1em 1.9em; font-size:1.05rem; }
+.btn--whatsapp{ background:var(--whatsapp); color:#06210F; box-shadow:var(--shadow-soft); }
+.btn--whatsapp:hover{ background:var(--whatsapp-dark); transform:translateY(-2px); box-shadow:var(--shadow-lift); }
+.btn--ghost{ background:transparent; color:var(--ink); border:1px solid var(--line-strong); }
+.btn--ghost:hover{ background:rgba(255,255,255,0.06); border-color:var(--ink); }
+.btn--nav{ padding:0.6em 1.15em; font-size:0.92rem; }
+
+/* =========================================================
+   Header
+========================================================= */
+.site-header{
+  position:sticky; top:0; z-index:100;
+  background:rgba(10,10,11,0.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.site-header__inner{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-block:0.85rem;
+}
+.brand{ display:flex; align-items:center; gap:0.6rem; color:var(--ink); }
+.brand__mark{ color:var(--gold); display:flex; border-radius:50%; overflow:hidden; flex-shrink:0; }
+.brand__mark img{ width:60px; height:60px; object-fit:cover; border-radius:50%; }
+.brand__name{ font-family:var(--font-display); font-weight:700; font-size:1.2rem; letter-spacing:0.02em; color:var(--ink); }
+
+.main-nav{ display:flex; align-items:center; gap:2rem; }
+.main-nav__list{ display:flex; gap:1.5rem; }
+.main-nav__list a{ color:var(--ink-soft); font-weight:500; font-size:0.92rem; transition:color 0.15s ease; }
+.main-nav__list a:hover{ color:var(--gold); }
+
+.hamburger{
+  display:none; flex-direction:column; justify-content:center; gap:5px;
+  width:40px; height:40px; padding:8px;
+}
+.hamburger span{ display:block; height:2px; width:100%; background:var(--ink); border-radius:2px; transition:transform 0.25s ease, opacity 0.25s ease; }
+.hamburger[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.hamburger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 880px){
+  .hamburger{ display:flex; }
+  .main-nav{
+    position:fixed; inset:64px 0 0 0; height:calc(100vh - 64px);
+    flex-direction:column; align-items:flex-start; justify-content:flex-start;
+    background:var(--bg); padding:2rem clamp(1.25rem,6vw,2rem);
+    transform:translateX(100%); transition:transform 0.3s ease;
+    gap:2rem; border-top:1px solid var(--line);
+  }
+  .main-nav.is-open{ transform:translateX(0); }
+  .main-nav__list{ flex-direction:column; gap:1.5rem; width:100%; }
+  .main-nav__list a{ font-size:1.2rem; }
+  .btn--nav{ width:100%; justify-content:center; }
+}
+
+/* =========================================================
+   Parallax band — bloque reutilizable de fondo fijo a pantalla
+   completa para secciones tipo hero / franja de contexto / CTA
+========================================================= */
+.parallax-band{ position:relative; overflow:hidden; isolation:isolate; }
+.parallax-band__bg{
+  position:absolute; inset:0; z-index:0;
+  background-size:cover; background-position:center; background-repeat:no-repeat;
+  background-attachment:fixed; /* fondo fijo mientras el contenido se desplaza encima */
+  transform:scale(1.08); /* evita bordes visibles al usar background-attachment:fixed */
+  filter:saturate(0.85) contrast(1.05);
+  will-change:transform;
+}
+.parallax-band__overlay{ position:absolute; inset:0; z-index:1; }
+.parallax-band__content{ position:relative; z-index:2; }
+
+/* Los fondos "fixed" no son fiables en iOS/touch: se reemplazan por scroll normal
+   y el parallax sutil lo aporta el JS (translateY) en esos dispositivos. */
+@media (hover:none), (pointer:coarse){
+  .parallax-band__bg{ background-attachment:scroll; transform:scale(1.02); }
+}
+@media (prefers-reduced-motion:reduce){
+  .parallax-band__bg{ background-attachment:scroll; transform:none !important; }
+}
+
+/* =========================================================
+   Hero — se funde con el fondo oscuro de la página
+========================================================= */
+.hero{
+  min-height:min(92vh, 780px);
+  display:flex; align-items:flex-end;
+  color:var(--ink);
+}
+.hero__scrim{
+  background:linear-gradient(180deg, rgba(10,10,11,0.35) 0%, rgba(10,10,11,0.55) 35%, var(--bg) 100%);
+}
+.hero__confetti{ position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+.confetti{
+  position:absolute; width:10px; height:16px; border-radius:3px; opacity:0.7;
+  animation:drift 9s ease-in-out infinite;
+}
+.confetti--1{ top:12%; left:8%; background:var(--gold); animation-delay:0s; }
+.confetti--2{ top:22%; left:82%; background:var(--pink); animation-delay:1.5s; transform:rotate(20deg); }
+.confetti--3{ top:55%; left:18%; background:var(--teal); animation-delay:3s; transform:rotate(-15deg); }
+.confetti--4{ top:8%; left:48%; background:var(--pink); animation-delay:4.5s; }
+.confetti--5{ top:65%; left:70%; background:var(--gold); animation-delay:2s; transform:rotate(35deg); }
+@keyframes drift{
+  0%,100%{ transform:translateY(0) rotate(0deg); }
+  50%{ transform:translateY(18px) rotate(12deg); }
+}
+
+.hero__content{ position:relative; z-index:2; padding-block:clamp(3rem, 8vw, 5rem); max-width:760px; }
+.hero__title{
+  font-size:clamp(2.4rem, 6vw, 4.4rem);
+  color:var(--ink);
+  max-width:14ch;
+  letter-spacing:-0.01em;
+}
+.hero__subtitle{
+  font-size:clamp(1.05rem, 2vw, 1.25rem);
+  color:var(--ink-soft);
+  max-width:46ch;
+}
+.hero__actions{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.75rem; }
+.hero__trust{
+  margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line);
+  font-size:0.85rem; letter-spacing:0.03em; color:var(--ink-faint);
+}
+
+/* =========================================================
+   Section heading
+========================================================= */
+.section-heading{ max-width:620px; margin-bottom:clamp(2rem,4vw,3rem); }
+.section-heading h2{ font-size:clamp(1.7rem, 3.2vw, 2.5rem); }
+.section-heading--center{ margin-inline:auto; text-align:center; max-width:700px; }
+.section-heading__note{ font-size:0.85rem; font-style:italic; opacity:0.6; }
+
+section{ padding-block:clamp(3.5rem, 7vw, 6rem); border-top:1px solid var(--line); }
+.hero{ border-top:none; }
+
+/* =========================================================
+   Benefits
+========================================================= */
+.benefits{ background:var(--bg); }
+.benefits__intro{ max-width:640px; margin-bottom:clamp(2rem,4vw,3rem); }
+.benefits__grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--gap); }
+.benefit-card{
+  background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius-md);
+  padding:clamp(1.5rem,3vw,2.2rem);
+  transition:border-color 0.2s ease, transform 0.2s ease;
+}
+.benefit-card:hover{ border-color:var(--line-strong); transform:translateY(-3px); }
+.benefit-card__icon{ font-size:1.9rem; display:inline-flex; align-items:center; justify-content:center;
+  width:48px; height:48px; border-radius:50%; background:var(--bg-raised-2); margin-bottom:1rem; }
+.benefit-card h3{ font-size:1.1rem; margin-bottom:0.4em; }
+.benefit-card p{ margin:0; }
+
+@media (max-width:760px){
+  .benefits__grid{ grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   Services
+========================================================= */
+.services{ background:var(--bg); }
+.services__grid{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--gap);
+}
+.service-card{
+  background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius-md); overflow:hidden;
+  display:flex; flex-direction:column;
+  transition:transform 0.2s ease, border-color 0.2s ease;
+}
+.service-card:hover{ transform:translateY(-4px); border-color:var(--gold); }
+.service-card__media{ aspect-ratio:4/3; overflow:hidden; border-bottom:1px solid var(--line); }
+.service-card__media img{ width:100%; height:100%; object-fit:cover; filter:saturate(0.9); transition:filter 0.3s ease; }
+.service-card:hover .service-card__media img{ filter:saturate(1.1); }
+.service-card__body{ padding:1.4rem 1.5rem 1.6rem; display:flex; flex-direction:column; gap:0.35rem; }
+.service-card__body h3{ font-size:1.15rem; color:var(--ink); }
+.service-card__cta{
+  margin-top:0.6rem; font-weight:700; color:var(--gold);
+  align-self:flex-start; transition:color 0.15s ease;
+}
+.service-card__cta:hover{ color:var(--pink); }
+
+@media (max-width:960px){
+  .services__grid{ grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width:600px){
+  .services__grid{ grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   Occasions
+========================================================= */
+.occasions{ padding-block:clamp(5rem, 12vw, 8rem); }
+.occasions__overlay{ background:linear-gradient(180deg, rgba(10,10,11,0.82) 0%, rgba(10,10,11,0.9) 100%); }
+.occasions__grid{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:0.9rem;
+}
+.occasion-chip{
+  display:flex; align-items:center; gap:0.6rem;
+  background:var(--bg-raised); color:var(--ink);
+  padding:0.75rem 1.3rem; border-radius:999px; font-weight:500;
+  border:1px solid var(--line);
+  transition:border-color 0.2s ease;
+}
+.occasion-chip:hover{ border-color:var(--gold); }
+.occasion-chip span{ font-size:1.2rem; }
+
+/* =========================================================
+   Gallery — grilla tipo "contact sheet"
+========================================================= */
+.gallery{ background:var(--bg); }
+.gallery__grid{
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  grid-template-rows:repeat(5, 1fr);
+  gap:2px; height:clamp(380px, 90vw, 620px);
+  padding:0 clamp(1.25rem,4vw,2rem) 1rem;
+}
+.gallery__item{ margin:0; overflow:hidden; border:1px solid var(--line); }
+/* Mosaico: grande arriba-izq, dos apiladas arriba-der, angosta + ancha abajo */
+.gallery__item--1{ grid-column:1 / 4; grid-row:1 / 4; }
+.gallery__item--2{ grid-column:4 / 7; grid-row:1 / 3; }
+.gallery__item--3{ grid-column:4 / 7; grid-row:3 / 4; }
+.gallery__item--4{ grid-column:1 / 3; grid-row:4 / 6; }
+.gallery__item--5{ grid-column:3 / 7; grid-row:4 / 6; }
+.gallery__item img{ width:100%; height:100%; object-fit:cover; filter:grayscale(0.35) saturate(0.9); transition:transform 0.4s ease, filter 0.4s ease; }
+.gallery__item:hover img{ transform:scale(1.06); filter:grayscale(0) saturate(1.1); }
+
+@media (min-width:960px){
+  .gallery__grid{ height:clamp(420px, 45vw, 560px); }
+}
+
+/* =========================================================
+   Steps
+========================================================= */
+.steps{ background:var(--bg); }
+.steps__list{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); counter-reset:step; }
+.step{
+  background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius-md); padding:clamp(1.5rem,3vw,2.2rem);
+  position:relative;
+}
+.step__number{
+  font-family:var(--font-display); font-weight:800; font-size:2rem;
+  color:var(--gold); display:block; margin-bottom:0.5rem;
+}
+.step h3{ font-size:1.1rem; }
+
+@media (max-width:760px){
+  .steps__list{ grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   CTA band — tarjeta destacada sobre fondo oscuro
+========================================================= */
+.cta-band{ padding-block:clamp(6rem, 14vw, 9rem); }
+.cta-band__overlay{ background:linear-gradient(180deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0.75) 100%); }
+.cta-band__inner{
+  display:flex; flex-direction:column; align-items:center; gap:0.4rem; text-align:center;
+  background:rgba(20,20,23,0.9); backdrop-filter:blur(6px);
+  border:1px solid var(--line-strong); border-radius:var(--radius-lg);
+  padding:clamp(2.5rem,6vw,4rem) clamp(1.5rem,5vw,3rem);
+  position:relative; overflow:hidden; margin-inline:auto; max-width:760px;
+}
+.cta-band__inner::before{
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--gold), var(--pink), var(--teal));
+}
+.cta-band h2{ font-size:clamp(1.8rem, 3.5vw, 2.6rem); }
+.cta-band p{ max-width:520px; margin-inline:auto; }
+.cta-band .btn--whatsapp{ margin-top:0.6rem; }
+.cta-band__phone{ margin-top:0.6rem; font-weight:600; letter-spacing:0.02em; color:var(--ink-soft); }
+
+/* =========================================================
+   Testimonials
+========================================================= */
+.testimonials{ background:var(--bg); }
+.testimonials__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); }
+.testimonial-card{
+  background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius-md); padding:clamp(1.5rem,3vw,2rem);
+  margin:0;
+}
+.testimonial-card__stars{ color:var(--gold); letter-spacing:0.15em; margin-bottom:0.6rem; }
+.testimonial-card p{ color:var(--ink); font-style:italic; }
+.testimonial-card cite{ display:block; margin-top:0.8rem; font-style:normal; font-weight:600; color:var(--ink-faint); font-size:0.9rem; }
+
+@media (max-width:900px){
+  .testimonials__grid{ grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   FAQ — lista plana con divisores, numerada Q0X
+========================================================= */
+.faq{ background:var(--bg); }
+.faq__list{ max-width:760px; margin-inline:auto; display:flex; flex-direction:column; }
+.faq-item{ border-bottom:1px solid var(--line); }
+.faq-item:first-child{ border-top:1px solid var(--line); }
+.faq-item__question{
+  width:100%; display:flex; justify-content:space-between; align-items:center;
+  padding:1.3rem 0.25rem; font-weight:600; text-align:left; font-size:1rem; color:var(--ink);
+}
+.faq-item__num{
+  font-family:var(--font-body); font-weight:700; color:var(--gold);
+  font-size:0.8rem; letter-spacing:0.06em; margin-right:0.9rem;
+}
+.faq-item__icon{ font-size:1.4rem; color:var(--gold); transition:transform 0.2s ease; flex-shrink:0; margin-left:1rem; }
+.faq-item__question[aria-expanded="true"] .faq-item__icon{ transform:rotate(45deg); }
+.faq-item__answer{ max-height:0; overflow:hidden; transition:max-height 0.28s ease; padding:0 0.25rem; }
+.faq-item__answer p{ padding-bottom:1.3rem; margin:0; padding-left:2.6rem; }
+
+/* =========================================================
+   Footer
+========================================================= */
+.site-footer{ background:var(--bg); color:var(--ink-faint); padding-top:clamp(3rem,6vw,4.5rem); border-top:1px solid var(--line); }
+.site-footer__grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:2rem; padding-bottom:2.5rem; }
+.site-footer__brand .brand__name{ color:var(--ink); font-size:1.3rem; }
+.site-footer__brand p{ color:var(--ink-faint); margin-top:0.5rem; max-width:32ch; }
+
+.site-footer__brand{ display:flex; flex-direction:column; align-items:flex-start; }
+.brand__mark--footer{ width:48px; height:48px; border-radius:50%; overflow:hidden; margin-bottom:0.75rem; }
+.brand__mark--footer img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
+
+.site-footer__col h3{ color:var(--ink); font-size:0.9rem; margin-bottom:0.9rem; text-transform:uppercase; letter-spacing:0.08em; }
+.site-footer__col ul{ display:flex; flex-direction:column; gap:0.55rem; }
+.site-footer__col a{ color:var(--ink-faint); font-size:0.95rem; transition:color 0.15s ease; }
+.site-footer__col a:hover{ color:var(--gold); }
+.footer-instagram{ display:inline-flex; align-items:center; gap:0.6rem; }
+.footer-instagram img{ border-radius:50%; object-fit:cover; border:1px solid var(--line-strong); }
+.site-footer__bottom{ border-top:1px solid var(--line); padding-block:1.25rem; font-size:0.85rem; text-align:center; }
+
+@media (max-width:760px){
+  .site-footer__grid{ grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   WhatsApp float button
+========================================================= */
+.wsp-float{
+  position:fixed; right:1.25rem; bottom:1.25rem; z-index:200;
+  width:58px; height:58px; border-radius:50%;
+  background:var(--whatsapp); color:#06210F;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow-lift);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+.wsp-float:hover{ background:var(--whatsapp-dark); }
+@keyframes pulse{
+  0%,100%{ box-shadow:0 0 0 0 rgba(37,211,102,0.45), var(--shadow-lift); }
+  50%{ box-shadow:0 0 0 10px rgba(37,211,102,0), var(--shadow-lift); }
+}
+
+/* =========================================================
+   Scroll reveal — variantes + stagger
+========================================================= */
+.reveal{
+  opacity:0; transform:translateY(22px);
+  transition:opacity 0.6s cubic-bezier(.16,.8,.3,1), transform 0.6s cubic-bezier(.16,.8,.3,1);
+  transition-delay:var(--reveal-delay, 0ms);
+}
+.reveal.is-visible{ opacity:1; transform:none; }
+
+/* variantes opcionales — agregar junto a .reveal en el HTML */
+.reveal--left{ transform:translateX(-28px); }
+.reveal--left.is-visible{ transform:none; }
+.reveal--right{ transform:translateX(28px); }
+.reveal--right.is-visible{ transform:none; }
+.reveal--zoom{ transform:scale(0.92); }
+.reveal--zoom.is-visible{ transform:none; }
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{ transition-delay:0ms !important; }
+}
