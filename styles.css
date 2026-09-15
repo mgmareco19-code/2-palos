@@ -623,7 +623,27 @@ section{ padding-block:clamp(3.5rem, 7vw, 6rem); border-top:1px solid var(--line
 @media (max-width:760px){
   .catalog-teaser__grid{ grid-template-columns:1fr; }
   .price-row{ flex-direction:column; align-items:flex-start; gap:0.4rem; }
-  .combo-grid{ grid-template-columns:1fr; }
+}
+
+@media (max-width:600px){
+  .combo-grid{ grid-template-columns:repeat(3, 1fr); gap:0.5rem; }
+  .combo-card{ padding:0.5rem 0.5rem 0.65rem; gap:0.35rem; border-radius:var(--radius-sm); }
+  .combo-card__media img{ height:auto; aspect-ratio:1/1; }
+  .combo-card__head{ flex-direction:column; align-items:flex-start; gap:0.1rem; }
+  .combo-card__title{ font-size:0.72rem; line-height:1.25; }
+  .combo-card__capacity, .combo-card__items, .combo-card__desc, .combo-card__extra{ display:none; }
+  .combo-card__price{
+    margin-top:0.15rem; padding-top:0.4rem; border-top:1px solid var(--line);
+    font-size:0.78rem; line-height:1.2;
+  }
+  .combo-card__price span{ display:block; font-size:0.62rem; margin-left:0; }
+}
+
+@media (max-width:360px){
+  .combo-grid{ gap:0.4rem; }
+  .combo-card{ padding:0.4rem 0.4rem 0.5rem; }
+  .combo-card__title{ font-size:0.64rem; }
+  .combo-card__price{ font-size:0.7rem; }
 }
 
 /* ---- Miniaturas en las tarjetas de catálogo ---- */
