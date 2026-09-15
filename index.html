@@ -16,6 +16,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="img/steven-weeks-pdTi4_gxSsY-unsplash.jpg" fetchpriority="high">
 <link href="img/567178867_17853471231557116_4136609830677038308_n.jpg" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -37,6 +38,7 @@
       <ul class="main-nav__list">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
         <li><a href="#galeria">Galería</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -127,7 +129,7 @@
         <!-- las tarjetas se generan también desde script.js data-servicios; contenido estático de respaldo -->
         <article class="service-card reveal reveal--zoom">
           <div class="service-card__media">
-            <img src="img/andrey-metelev-DEuansgqjns-unsplash.jpg" alt="Juegos de mesa disponibles para alquiler en eventos" loading="lazy">
+            <img src="https://placehold.co/640x480/12877F/FBF8F2?text=Juegos+de+Mesa" alt="Juegos de mesa disponibles para alquiler en eventos" loading="lazy">
           </div>
           <div class="service-card__body">
             <h3>Juegos de mesa</h3>
@@ -138,7 +140,7 @@
 
         <article class="service-card reveal reveal--zoom">
           <div class="service-card__media">
-            <img src="img/chris-jones-wp6F0gnsSk4-unsplash.jpg" alt="Toro mecánico para alquiler en fiestas y eventos" loading="lazy">
+            <img src="https://placehold.co/640x480/D6336C/FBF8F2?text=Toro+Mecánico" alt="Toro mecánico para alquiler en fiestas y eventos" loading="lazy">
           </div>
           <div class="service-card__body">
             <h3>Toro mecánico</h3>
@@ -201,6 +203,35 @@
             <a href="https://wa.me/595993303099?text=Hola%2C%20quiero%20consultar%20por%20Tarimas" class="service-card__cta" target="_blank" rel="noopener">Consultar →</a>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3b. CATÁLOGO ===== -->
+  <section class="section catalog-teaser" id="catalogo">
+    <div class="container">
+      <div class="section-heading section-heading--center reveal">
+        <p class="eyebrow">Catálogo</p>
+        <h2>Mirá nuestros precios</h2>
+        <p class="section-heading__note">Elegí la categoría que te interesa y consultá disponibilidad.</p>
+      </div>
+      <div class="catalog-teaser__grid">
+        <a href="catalogo-juegos.html" class="catalog-teaser__card reveal reveal--left">
+          <span class="catalog-teaser__tag">Catálogo</span>
+          <div>
+            <h3>Juegos</h3>
+            <p>Mesa de billar, tejo, futbolito, beer pong, tiro al blanco, ping pong, teqball, tembleque y tateti.</p>
+          </div>
+          <span class="service-card__cta">Ver precios →</span>
+        </a>
+        <a href="catalogo-puffs.html" class="catalog-teaser__card reveal reveal--right">
+          <span class="catalog-teaser__tag">Catálogo</span>
+          <div>
+            <h3>Puffs de pallets</h3>
+            <p>11 combos de puffs, sofás respalderos, sillones de cable y mesitas, para 10 a 20 personas.</p>
+          </div>
+          <span class="service-card__cta">Ver precios →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -295,7 +326,7 @@
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
       <span class="brand__mark brand__mark--footer" aria-hidden="true">
-        <img src="img/567178867_17853471231557116_4136609830677038308_n.jpg" alt="" width="48" height="48">
+        <img src="img/567178867_17853471231557116_4136609830677038308_n.jpg" alt="" width="48" height="48" loading="lazy">
       </span>
       <span class="brand__name">DOS PALOS</span>
       <p>Juegos, entretenimiento y servicios para tus eventos.</p>
@@ -306,6 +337,7 @@
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
         <li><a href="#galeria">Galería</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
