@@ -568,7 +568,7 @@ section{ padding-block:clamp(3.5rem, 7vw, 6rem); border-top:1px solid var(--line
 }
 
 /* Cabecera de página de catálogo */
-.catalog-hero{ padding-block:clamp(6rem, 12vw, 8rem) clamp(2rem, 5vw, 3rem); background:var(--bg); text-align:center; }
+.catalog-hero{ padding-block:clamp(10rem, 12vw, 8rem) clamp(2rem, 5vw, 3rem); background:var(--bg); text-align:center; }
 .catalog-hero h1{ font-size:clamp(2rem, 5vw, 3.2rem); color:var(--ink); margin:0.4rem 0 0.8rem; }
 .catalog-hero p{ max-width:56ch; margin-inline:auto; color:var(--ink-faint); }
 .catalog-back{
@@ -766,4 +766,64 @@ section{ padding-block:clamp(3.5rem, 7vw, 6rem); border-top:1px solid var(--line
 @media (max-width:480px){
   .cart-panel{ width:100vw; }
   .cart-float{ left:1rem; bottom:1rem; width:50px; height:50px; }
+}
+
+/* =========================================================
+   Micro-interacciones y feedback amigable
+========================================================= */
+
+/* Respuesta táctil al presionar botones */
+.btn:active,
+.combo-card__add:active,
+.cart-qty-btn:active,
+.catalog-back:active{ transform:scale(0.96); }
+
+.combo-card__add{ transition:background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, border-color 0.2s ease; }
+.cart-qty-btn{ transition:border-color 0.15s ease, color 0.15s ease, transform 0.15s ease; }
+
+/* El carrito "salta" al agregar un producto, para confirmar la acción sin texto extra */
+@keyframes cartFloatBump{
+  0%{ transform:scale(1); }
+  35%{ transform:scale(1.18) rotate(-6deg); }
+  65%{ transform:scale(0.94) rotate(3deg); }
+  100%{ transform:scale(1) rotate(0); }
+}
+.cart-float.is-bumping{ animation:cartFloatBump 0.45s ease; }
+
+@keyframes cartBadgePop{
+  0%{ transform:scale(0.4); opacity:0; }
+  60%{ transform:scale(1.25); opacity:1; }
+  100%{ transform:scale(1); }
+}
+.cart-float__badge.is-popping{ animation:cartBadgePop 0.3s ease; }
+
+/* Los ítems entran suavemente al listado del carrito en vez de aparecer de golpe */
+@keyframes cartItemIn{
+  from{ opacity:0; transform:translateY(8px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+.cart-panel__item{ animation:cartItemIn 0.25s ease; }
+
+/* Pequeño respiro/latido en el botón flotante para invitar a explorar el catálogo */
+@keyframes cartFloatInvite{
+  0%, 100%{ box-shadow:var(--shadow-lift); }
+  50%{ box-shadow:0 0 0 8px rgba(242,169,59,0.12), var(--shadow-lift); }
+}
+.cart-float{ animation:cartFloatInvite 2.6s ease-in-out infinite; }
+.cart-float:hover, .cart-float:focus-visible{ animation:none; }
+
+/* Realce del total cuando cambia, para que se note el cálculo automático */
+@keyframes totalPulse{
+  0%{ color:var(--gold); }
+  40%{ color:var(--pink); }
+  100%{ color:var(--gold); }
+}
+.cart-panel__total strong.is-updated{ animation:totalPulse 0.4s ease; }
+
+@media (prefers-reduced-motion: reduce){
+  .cart-float{ animation:none; }
+  .cart-float.is-bumping,
+  .cart-float__badge,
+  .cart-panel__item,
+  .cart-panel__total strong.is-updated{ animation:none; }
 }

@@ -224,7 +224,19 @@ function initCart() {
   const waBtn = document.getElementById('cartWhatsapp');
   if (!floatBtn || !panel || !listEl) return;
 
-  function render() {
+  let lastTotal = null;
+
+  // Reinicia una animación CSS quitando y devolviendo la clase (permite repetirla)
+  function replay(el, className) {
+    if (!el) return;
+    el.classList.remove(className);
+    // eslint-disable-next-line no-unused-expressions
+    void el.offsetWidth; // fuerza reflow para que el navegador "olvide" el estado anterior
+    el.classList.add(className);
+  }
+
+  function render(opts) {
+    const silent = opts && opts.silent;
     const cart = cartRead();
     listEl.querySelectorAll('.cart-panel__item').forEach((n) => n.remove());
 
@@ -252,10 +264,19 @@ function initCart() {
     });
 
     if (emptyEl) emptyEl.hidden = cart.length > 0;
-    if (totalEl) totalEl.textContent = cartFormatGs(total);
+    if (totalEl) {
+      totalEl.textContent = cartFormatGs(total);
+      if (!silent && lastTotal !== null && total !== lastTotal) replay(totalEl, 'is-updated');
+      lastTotal = total;
+    }
     if (badgeEl) {
-      if (count > 0) { badgeEl.hidden = false; badgeEl.textContent = String(count); }
-      else { badgeEl.hidden = true; }
+      if (count > 0) {
+        badgeEl.hidden = false;
+        badgeEl.textContent = String(count);
+        if (!silent) replay(badgeEl, 'is-popping');
+      } else {
+        badgeEl.hidden = true;
+      }
     }
     if (waBtn) waBtn.disabled = cart.length === 0;
     if (clearBtn) clearBtn.hidden = cart.length === 0;
@@ -268,6 +289,7 @@ function initCart() {
     else cart.push({ id, name, price, qty: 1 });
     cartWrite(cart);
     render();
+    replay(floatBtn, 'is-bumping');
     openPanel();
   }
 
@@ -360,5 +382,5 @@ function initCart() {
     });
   }
 
-  render();
+  render({ silent: true });
 }
