@@ -626,24 +626,28 @@ section{ padding-block:clamp(3.5rem, 7vw, 6rem); border-top:1px solid var(--line
 }
 
 @media (max-width:600px){
-  .combo-grid{ grid-template-columns:repeat(3, 1fr); gap:0.5rem; }
-  .combo-card{ padding:0.5rem 0.5rem 0.65rem; gap:0.35rem; border-radius:var(--radius-sm); }
-  .combo-card__media img{ height:auto; aspect-ratio:1/1; }
-  .combo-card__head{ flex-direction:column; align-items:flex-start; gap:0.1rem; }
-  .combo-card__title{ font-size:0.72rem; line-height:1.25; }
-  .combo-card__capacity, .combo-card__items, .combo-card__desc, .combo-card__extra{ display:none; }
+  .combo-grid{ grid-template-columns:repeat(2, 1fr); gap:0.7rem; }
+  .combo-card{ padding:0.85rem 0.85rem 1rem; gap:0.55rem; border-radius:var(--radius-sm); }
+  .combo-card__media img{ height:auto; aspect-ratio:4/3; }
+  .combo-card__head{ flex-direction:column; align-items:flex-start; gap:0.15rem; }
+  .combo-card__title{ font-size:0.92rem; line-height:1.25; }
+  .combo-card__capacity{ font-size:0.72rem; }
+  .combo-card__items li{ font-size:0.8rem; }
+  .combo-card__desc{ font-size:0.8rem; }
+  .combo-card__extra{ font-size:0.68rem; padding:0.25em 0.5em; }
   .combo-card__price{
-    margin-top:0.15rem; padding-top:0.4rem; border-top:1px solid var(--line);
-    font-size:0.78rem; line-height:1.2;
+    margin-top:auto; padding-top:0.6rem; border-top:1px solid var(--line);
+    font-size:1rem; line-height:1.2;
   }
-  .combo-card__price span{ display:block; font-size:0.62rem; margin-left:0; }
+  .combo-card__price span{ font-size:0.68rem; margin-left:0.2rem; }
 }
 
 @media (max-width:360px){
-  .combo-grid{ gap:0.4rem; }
-  .combo-card{ padding:0.4rem 0.4rem 0.5rem; }
-  .combo-card__title{ font-size:0.64rem; }
-  .combo-card__price{ font-size:0.7rem; }
+  .combo-grid{ gap:0.5rem; }
+  .combo-card{ padding:0.7rem 0.7rem 0.85rem; }
+  .combo-card__title{ font-size:0.85rem; }
+  .combo-card__items li, .combo-card__desc{ font-size:0.75rem; }
+  .combo-card__price{ font-size:0.92rem; }
 }
 
 /* ---- Miniaturas en las tarjetas de catálogo ---- */
