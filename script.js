@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaqAccordion();
   initFooterYear();
   initGalleryLightbox();
+  initCart();
 });
 
 /* ---------- Menú móvil ---------- */
@@ -185,4 +186,179 @@ function initGalleryLightbox() {
 function initFooterYear() {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+/* ---------- Carrito de selección (catálogos) -----------
+   Guarda lo que el usuario agrega en localStorage (compartido entre
+   catalogo-juegos.html y catalogo-puffs.html) y arma un mensaje de
+   WhatsApp con el detalle y el total al confirmar. */
+const CART_KEY = 'dospalos_cart_v1';
+const CART_PHONE = '595993303099';
+
+function cartRead() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(CART_KEY));
+    return Array.isArray(raw) ? raw : [];
+  } catch (e) {
+    return [];
+  }
+}
+function cartWrite(items) {
+  try { localStorage.setItem(CART_KEY, JSON.stringify(items)); } catch (e) { /* almacenamiento no disponible */ }
+}
+function cartFormatGs(n) {
+  return 'Gs. ' + n.toLocaleString('es-PY');
+}
+
+function initCart() {
+  const addButtons = document.querySelectorAll('[data-cart-item]');
+  const floatBtn = document.getElementById('cartFloat');
+  const panel = document.getElementById('cartPanel');
+  const overlay = document.getElementById('cartOverlay');
+  const closeBtn = document.getElementById('cartClose');
+  const listEl = document.getElementById('cartList');
+  const emptyEl = document.getElementById('cartEmpty');
+  const totalEl = document.getElementById('cartTotal');
+  const badgeEl = document.getElementById('cartBadge');
+  const clearBtn = document.getElementById('cartClear');
+  const waBtn = document.getElementById('cartWhatsapp');
+  if (!floatBtn || !panel || !listEl) return;
+
+  function render() {
+    const cart = cartRead();
+    listEl.querySelectorAll('.cart-panel__item').forEach((n) => n.remove());
+
+    let total = 0;
+    let count = 0;
+
+    cart.forEach((item) => {
+      total += item.price * item.qty;
+      count += item.qty;
+
+      const row = document.createElement('div');
+      row.className = 'cart-panel__item';
+      row.innerHTML =
+        '<div class="cart-panel__item-info">' +
+          '<span class="cart-panel__item-name">' + item.name + '</span>' +
+          '<span class="cart-panel__item-price">' + cartFormatGs(item.price) + ' c/u</span>' +
+        '</div>' +
+        '<div class="cart-panel__item-qty">' +
+          '<button type="button" class="cart-qty-btn" data-qty-minus="' + item.id + '" aria-label="Quitar uno">&minus;</button>' +
+          '<span>' + item.qty + '</span>' +
+          '<button type="button" class="cart-qty-btn" data-qty-plus="' + item.id + '" aria-label="Agregar uno">+</button>' +
+        '</div>' +
+        '<button type="button" class="cart-panel__item-remove" data-remove="' + item.id + '" aria-label="Eliminar">&times;</button>';
+      listEl.appendChild(row);
+    });
+
+    if (emptyEl) emptyEl.hidden = cart.length > 0;
+    if (totalEl) totalEl.textContent = cartFormatGs(total);
+    if (badgeEl) {
+      if (count > 0) { badgeEl.hidden = false; badgeEl.textContent = String(count); }
+      else { badgeEl.hidden = true; }
+    }
+    if (waBtn) waBtn.disabled = cart.length === 0;
+    if (clearBtn) clearBtn.hidden = cart.length === 0;
+  }
+
+  function addItem(id, name, price) {
+    const cart = cartRead();
+    const existing = cart.find((i) => i.id === id);
+    if (existing) existing.qty += 1;
+    else cart.push({ id, name, price, qty: 1 });
+    cartWrite(cart);
+    render();
+    openPanel();
+  }
+
+  function changeQty(id, delta) {
+    let cart = cartRead();
+    const item = cart.find((i) => i.id === id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter((i) => i.id !== id);
+    cartWrite(cart);
+    render();
+  }
+
+  function removeItem(id) {
+    cartWrite(cartRead().filter((i) => i.id !== id));
+    render();
+  }
+
+  function openPanel() {
+    panel.classList.add('is-open');
+    if (overlay) overlay.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePanel() {
+    panel.classList.remove('is-open');
+    if (overlay) overlay.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  addButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const { id, name, price } = btn.dataset;
+      addItem(id, name, parseInt(price, 10) || 0);
+
+      const original = btn.textContent;
+      btn.classList.add('is-added');
+      btn.textContent = 'Agregado ✓';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('is-added');
+      }, 1200);
+    });
+  });
+
+  floatBtn.addEventListener('click', openPanel);
+  floatBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPanel(); }
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closePanel);
+  if (overlay) overlay.addEventListener('click', closePanel);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('is-open')) closePanel();
+  });
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      cartWrite([]);
+      render();
+    });
+  }
+
+  listEl.addEventListener('click', (e) => {
+    const plus = e.target.closest('[data-qty-plus]');
+    const minus = e.target.closest('[data-qty-minus]');
+    const remove = e.target.closest('[data-remove]');
+    if (plus) changeQty(plus.dataset.qtyPlus, 1);
+    if (minus) changeQty(minus.dataset.qtyMinus, -1);
+    if (remove) removeItem(remove.dataset.remove);
+  });
+
+  if (waBtn) {
+    waBtn.addEventListener('click', () => {
+      const cart = cartRead();
+      if (!cart.length) return;
+      let total = 0;
+      const lines = cart.map((item) => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        return '• ' + item.name + ' x' + item.qty + ' — ' + cartFormatGs(subtotal);
+      });
+      const msg =
+        'Hola DOS PALOS, quiero consultar disponibilidad para:\n\n' +
+        lines.join('\n') +
+        '\n\nTotal estimado: ' + cartFormatGs(total);
+      const url = 'https://wa.me/' + CART_PHONE + '?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+
+  render();
 }

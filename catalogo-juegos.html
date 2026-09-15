@@ -74,6 +74,7 @@
           </div>
           <p class="combo-card__desc">Mesa de billar profesional con tacos y bolas. El clásico que no falla en cualquier reunión.</p>
           <p class="combo-card__price">Gs. 300.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-billar" data-name="Juego — Mesa de billar" data-price="300000">+ Agregar a mi pedido</button>
         </article>
 
         <article class="combo-card">
@@ -85,6 +86,7 @@
           </div>
           <p class="combo-card__desc">Piki sobre mesa curva. Ideal para los fanáticos del fútbol que quieren competir.</p>
           <p class="combo-card__price">Gs. 300.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-teqball" data-name="Juego — Teqball" data-price="300000">+ Agregar a mi pedido</button>
         </article>
 
         <article class="combo-card">
@@ -96,6 +98,7 @@
           </div>
           <p class="combo-card__desc">Mesa de ping pong con paletas y pelotitas. Diversión para todas las edades.</p>
           <p class="combo-card__price">Gs. 250.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-ping-pong" data-name="Juego — Ping pong" data-price="250000">+ Agregar a mi pedido</button>
         </article>
 
         <article class="combo-card">
@@ -107,6 +110,7 @@
           </div>
           <p class="combo-card__desc">Juego de puntería para desafiar a tus invitados y armar torneos rápidos.</p>
           <p class="combo-card__price">Gs. 230.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-tiro-blanco" data-name="Juego — Tiro al blanco" data-price="230000">+ Agregar a mi pedido</button>
         </article>
 
         <article class="combo-card">
@@ -118,6 +122,7 @@
           </div>
           <p class="combo-card__desc">El juego tradicional para jugar en equipos durante todo el evento.</p>
           <p class="combo-card__price">Gs. 200.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-tejo" data-name="Juego — Tejo" data-price="200000">+ Agregar a mi pedido</button>
         </article>
 
         <article class="combo-card">
@@ -129,6 +134,7 @@
           </div>
           <p class="combo-card__desc">Metegol para partidos rápidos entre amigos. Siempre junta gente alrededor.</p>
           <p class="combo-card__price">Gs. 200.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-futbolito" data-name="Juego — Futbolito" data-price="200000">+ Agregar a mi pedido</button>
         </article>
 
         <article class="combo-card">
@@ -141,6 +147,7 @@
           <p class="combo-card__desc">Mesa oficial de beer pong para animar reuniones y despedidas.</p>
           <span class="combo-card__extra">Adicional: 20 vasos y 4 pelotitas por Gs. 50.000</span>
           <p class="combo-card__price">Gs. 200.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-beer-pong" data-name="Juego — Beer pong" data-price="200000">+ Agregar a mi pedido</button>
         </article>
 
         <article class="combo-card">
@@ -152,6 +159,7 @@
           </div>
           <p class="combo-card__desc">Pulso firme y nervios de acero: el juego del alambre en tamaño grande.</p>
           <p class="combo-card__price">Gs. 150.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-tembleque" data-name="Juego — Tembleque grande" data-price="150000">+ Agregar a mi pedido</button>
         </article>
 
         <article class="combo-card">
@@ -163,6 +171,7 @@
           </div>
           <p class="combo-card__desc">Tablero gigante de tateti, perfecto para chicos y como juego de mesa rápido.</p>
           <p class="combo-card__price">Gs. 150.000</p>
+          <button type="button" class="combo-card__add" data-cart-item data-id="game-tateti" data-name="Juego — Tablero de tateti" data-price="150000">+ Agregar a mi pedido</button>
         </article>
 
       </div>
@@ -237,7 +246,37 @@
   </div>
 </footer>
 
+<!-- ===== CARRITO DE SELECCIÓN ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-panel" id="cartPanel" aria-hidden="true">
+  <div class="cart-panel__inner">
+    <div class="cart-panel__head">
+      <h3>Tu selección</h3>
+      <button type="button" class="cart-panel__close" id="cartClose" aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <div class="cart-panel__list" id="cartList">
+      <p class="cart-panel__empty" id="cartEmpty">Todavía no agregaste nada. Elegí las opciones que te interesan y tocá "Agregar a mi pedido".</p>
+    </div>
+    <div class="cart-panel__footer">
+      <div class="cart-panel__total">
+        <span>Total estimado</span>
+        <strong id="cartTotal">Gs. 0</strong>
+      </div>
+      <button type="button" class="btn btn--whatsapp btn--lg cart-panel__cta" id="cartWhatsapp" disabled>
+        <svg class="icon-wsp" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C4 14.7 3.6 13.4 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2z"/></svg>
+        Solicitar por WhatsApp
+      </button>
+      <button type="button" class="cart-panel__clear" id="cartClear" hidden>Vaciar selección</button>
+    </div>
+  </div>
+</div>
+<button type="button" class="cart-float" id="cartFloat" aria-label="Ver mi selección">
+  <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M7 4h-2l-1 2v1h2l3.6 7.59-1.35 2.44C7.52 18.37 8.48 20 10 20h11v-2H10l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03L23.9 7.94A1 1 0 0 0 23 6.5H8.21l-.94-2H7zM7 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm11 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+  <span class="cart-float__badge" id="cartBadge" hidden>0</span>
+</button>
+
 <!-- ===== WHATSAPP FLOTANTE ===== -->
+
 <a href="https://wa.me/595993303099?text=Hola%20DOS%20PALOS%2C%20quiero%20consultar%20por%20el%20alquiler%20de%20juegos"
    class="wsp-float" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
   <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C4 14.7 3.6 13.4 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2z"/></svg>
